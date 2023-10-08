@@ -1,11 +1,12 @@
 package ModelElement;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Scene {
     public int id;
-    public ArrayList<PoligonalModel> models = new ArrayList<>();
-    public ArrayList<Flash> flashes = new ArrayList<>();
+    public List<PoligonalModel> models;
+    public List<Flash> flashes;
+    public List<Camera> cameras;
 
     public Object method1(Object object1) {
         return object1;
