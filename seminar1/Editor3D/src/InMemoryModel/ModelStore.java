@@ -1,44 +1,3 @@
-// Замечания:
-// 1) В классе ModelStore необходимо добавить по одному экземпляру классов Flash, Camera и т.д.
-// 2) В класс Scene лучше не использовать Object (считается дурным тоном в программированиии), реализовывать можно следующим образом:
-// public Scene(int id, List<PoligonalModel> models, List<Flash> flashes, List<Camera> cameras) throws Exception {
-// this.ID = id;
-// if (models.size() > 0) {
-// this.Models = models;
-// } else {
-// throw new Exception("Должна быть одна модель");
-// }
-// this.Flashes = flashes;
-// if (cameras.size() > 0) {
-// this.cameras = cameras;
-// } else {
-// throw new Exception("Должна быть одна камера");
-// }
-// }
-
-// public <T> T method1(T flash) {
-//     return flash;
-// }
-
-// public <T, E> T method2(T Model, E Flash) {
-//     return Model;
-// }
-
-// /**
-// * заглушка
-// */
-// public Type1 method1(Type1 t) {
-// return t;
-// }
-
-// /**
-// * заглушка
-// */
-// public Type1 method1(Type1 t1, Type2 t2) {
-// return t1;
-// }
-// 4) Необходимо добавить классы Angle3D, Point3D
-
 package InMemoryModel;
 
 import java.util.ArrayList;
@@ -48,25 +7,32 @@ import ModelElement.Camera;
 import ModelElement.Flash;
 import ModelElement.PoligonalModel;
 import ModelElement.Scene;
+import ModelElement.Texture;
 
 public class ModelStore implements iModelChanger {
     public List<PoligonalModel> models;
     public List<Scene> scenes;
     public List<Flash> flashes;
     public List<Camera> cameras;
-    private iModelChangedObserver[] changeObservers;
+    private iModelChangeObserver[] changeObservers;
 
-    public iModelChangedObserver[] getChangeObservers() {
+    public iModelChangeObserver[] getChangeObservers() {
         return changeObservers;
     }
 
-    public ModelStore(iModelChangedObserver[] changeObservers) {
+    public ModelStore(iModelChangeObserver[] changeObservers) throws Exception {
         this.changeObservers = changeObservers;
 
         this.models = new ArrayList<PoligonalModel>();
         this.scenes = new ArrayList<Scene>();
         this.flashes = new ArrayList<Flash>();
         this.cameras = new ArrayList<Camera>();
+
+        List<Texture> Textures = new ArrayList<>();
+        models.add(new PoligonalModel(Textures));
+        flashes.add(new Flash());
+        cameras.add(new Camera());
+        scenes.add(new Scene(0, models, flashes, cameras));
     }
 
     public Scene getScena(int id) {
@@ -80,7 +46,7 @@ public class ModelStore implements iModelChanger {
 
     @Override
     public void NotifyChange(iModelChanger sender) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'NotifyChange'");
+
     }
+
 }

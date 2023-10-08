@@ -3,10 +3,17 @@ package ModelElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Poligon {
-    public List<Point3D> points;
+import Stuff.Point3D;
 
-    public Poligon(List<Point3D> points) {
-        this.points = new ArrayList<>();
+public class Poligon {
+    public List<Point3D> points = new ArrayList<Point3D>();
+
+    /**
+     * конструктор
+     *
+     * @param point
+     */
+    public Poligon(Point3D point) {
+        points.add(point);
     }
 }

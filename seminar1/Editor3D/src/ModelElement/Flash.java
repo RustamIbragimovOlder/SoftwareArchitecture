@@ -1,16 +1,33 @@
 package ModelElement;
 
+import Stuff.Angle3D;
+import Stuff.Point3D;
+
+/**
+ * класс источников света
+ */
 public class Flash {
-    public Point3D location;
-    public Angle3D angle;
-    public Color color;
-    public Float power;
+    public Point3D Location;
+    public Angle3D Angle;
+    public java.awt.Color color;
+    public float Power;
 
-    public void Rotate(Angle3D degree) {
+    /**
+     * поворот источников света на угол
+     *
+     * @param angleAction
+     */
+    public void Rotate(Angle3D angleAction) {
 
     }
 
-    public void Move(Point3D metre) {
+    /**
+     * перемещение к точке
+     * 
+     * @param pointAction
+     */
+    public void Move(Point3D pointAction) {
 
     }
+
 }
